@@ -54,7 +54,9 @@ export function get_page_handler(
 		 } = get_build_info();
 
 		res.setHeader('Content-Type', 'text/html');
-		res.setHeader('Cache-Control', dev ? 'no-cache' : 'max-age=600');
+    // HACK: Fix for authentication until https://github.com/sveltejs/sapper/issues/415 is addressed
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+		// res.setHeader('Cache-Control', dev ? 'no-cache' : 'max-age=600');
 
 		// preload main.js and current route
 		// TODO detect other stuff we can preload? images, CSS, fonts?
